@@ -1,5 +1,8 @@
-#!/bin/bash
-set -euo pipefail
+#!/usr/bin/env bash
+set -e
+set -u
+# 'pipefail' puede no existir en algunos shells, lo activamos si está disponible:
+(set -o pipefail) 2>/dev/null || true
 
 # ===============================
 #  Mi Novia - Builder Script
@@ -778,3 +781,4 @@ fi
 cp "$APK_PATH" "$WORKDIR/mi_novia_app.apk"
 echo "✅ ¡Listo! APK en: $WORKDIR/mi_novia_app.apk"
 echo "Descárgalo desde los Artifacts del workflow."
+
