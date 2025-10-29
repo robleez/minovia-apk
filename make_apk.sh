@@ -71,9 +71,9 @@ EOF
 # app/build.gradle.kts
 cat > "$PROJ/app/build.gradle.kts" <<'EOF'
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
+    id("com.android.application") version "8.1.0" apply false
+    id("org.jetbrains.kotlin.android") version "1.9.24" apply false
+    id("org.jetbrains.kotlin.kapt") version "1.9.24" apply false
 }
 
 android {
@@ -89,7 +89,7 @@ android {
     }
 
     buildFeatures { compose = true }
-    composeOptions { kotlinCompilerExtensionVersion = "1.5.3" }
+    composeOptions { kotlinCompilerExtensionVersion = "1.5.14" }
 
     kotlinOptions { jvmTarget = "17" }
     compileOptions {
@@ -713,6 +713,15 @@ Mi Novia — App nativa Android (Jetpack Compose)
 - Material 3 (oscuro)
 EOF
 
+# gradle.properties
+cat > "$PROJ/gradle.properties" <<'EOF'
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+android.useAndroidX=true
+android.enableJetifier=true
+# Solo para silenciar el warning con AGP usado:
+android.suppressUnsupportedCompileSdk=34
+EOF
+
 # -----------------------------------------
 # 2) INSTALAR JDK 17, ANDROID SDK, GRADLE
 # -----------------------------------------
@@ -781,5 +790,6 @@ fi
 cp "$APK_PATH" "$WORKDIR/mi_novia_app.apk"
 echo "✅ ¡Listo! APK en: $WORKDIR/mi_novia_app.apk"
 echo "Descárgalo desde los Artifacts del workflow."
+
 
 
