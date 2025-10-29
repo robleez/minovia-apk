@@ -10,10 +10,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Normalize line endings (optional but recommended)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dos2unix
+          dos2unix make_apk.sh
+
       - name: Make script executable
         run: chmod +x make_apk.sh
 
       - name: Build APK
+        shell: bash
         run: bash make_apk.sh
 
       - name: Upload APK artifact
