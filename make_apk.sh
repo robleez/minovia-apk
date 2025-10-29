@@ -95,7 +95,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-        coreLibraryDesugaringEnabled = true
+        isCoreLibraryDesugaringEnabled = true
     }
 
     packaging {
@@ -781,4 +781,5 @@ fi
 cp "$APK_PATH" "$WORKDIR/mi_novia_app.apk"
 echo "✅ ¡Listo! APK en: $WORKDIR/mi_novia_app.apk"
 echo "Descárgalo desde los Artifacts del workflow."
+
 
